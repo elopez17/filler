@@ -6,7 +6,7 @@
 /*   By: eLopez <elopez@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 14:17:13 by eLopez            #+#    #+#             */
-/*   Updated: 2018/01/31 00:19:44 by eLopez           ###   ########.fr       */
+/*   Updated: 2018/01/31 15:29:49 by elopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,8 @@ static void	v_init(t_vis *v)
 static int	key_hook(int key, t_vis **v)
 {
 	if (key == 36)
-	{
-		process(*v);
-		process(*v);
-		process(*v);
-		process(*v);
-	}
+		while (process(*v))
+			mlx_do_sync((*v)->mlx);
 	else if (key == KEYESC)
 	{
 		mlx_destroy_image((*v)->mlx, (*v)->img);

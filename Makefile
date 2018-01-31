@@ -17,13 +17,13 @@ TURQ	= \x1b[36m
 WHT		= \x1b[37m
 CC		= gcc
 CFLAGS	= -Wall -Wextra
-SRC		= $(shell ls src | grep -E ".+\.c")
-VSRC	= $(shell ls visual | grep -E ".+\.c")
-ODIR	:= obj
+SRC		= $(shell ls sources/src | grep -E ".+\.c")
+VSRC	= $(shell ls sources/visual | grep -E ".+\.c")
+ODIR	:= sources/obj
 OBJ		:= $(addprefix $(ODIR)/,$(SRC:%.c=%.o))
 VOBJ	:= $(addprefix $(ODIR)/,$(VSRC:%.c=%.o))
-INC		= includes
-LIB		= libft.a
+INC		= sources/includes
+LIB		= sources/libft.a
 EX		= players/elopez.filler
 BONUS	= visualizer
 
@@ -33,37 +33,37 @@ all: $(LIB) $(EX) $(BONUS)
 visual: $(BONUS) $(EX)
 	@-touch output
 	@-chmod 666 output
-	-./filler_vm -p1 $(EX) -p2 players/abanlin.filler -f maps/map00 > output
+	-./filler_vm -p1 $(EX) -p2 players/carli.filler -f maps/map02 > output
 	-./$(BONUS) output
 	@rm -f output
 
 $(EX): $(OBJ)
-	@$(CC) $(CFLAGS) -I $(INC) -o $(EX) $(OBJ) -L. -lft
+	@$(CC) $(CFLAGS) -I $(INC) -o $(EX) $(OBJ) -L./sources/ -lft
 
-$(ODIR)/%.o:src/%.c | $(ODIR)
-	@$(CC) $(CFLAGS) -I $(INC) -I minilibx -o $@ -c $<
+$(ODIR)/%.o:sources/src/%.c | $(ODIR)
+	@$(CC) $(CFLAGS) -I $(INC) -I sources/minilibx -o $@ -c $<
 
 $(ODIR):
 	@mkdir $(ODIR)
 
 $(LIB):
-	@make -C libft/
+	@make -C sources/libft/
 
 $(BONUS): $(LIB) $(OBJ) $(VOBJ)
-	@make -C minilibx/
-	@$(CC) $(CFLAGS) -I $(INC) -I ./minilibx -o $(BONUS) $(VOBJ) -L. -lft -L minilibx -lmlx -framework OpenGL -framework AppKit
+	@make -C sources/minilibx/
+	@$(CC) $(CFLAGS) -I $(INC) -I sources/minilibx -o $(BONUS) $(VOBJ) -L sources -lft -L sources/minilibx -lmlx -framework OpenGL -framework AppKit
 
-$(ODIR)/%.o:visual/%.c | $(ODIR)
-	@$(CC) $(CFLAGS) -I $(INC) -I minilibx -o $@ -c $<
+$(ODIR)/%.o:sources/visual/%.c | $(ODIR)
+	@$(CC) $(CFLAGS) -I $(INC) -I sources/minilibx -o $@ -c $<
 
 clean:
-	@rm -rf obj
-	@make -C libft/ clean
-	@make -C minilibx/ clean
+	@rm -rf sources/obj
+	@make -C sources/libft/ clean
+	@make -C sources/minilibx/ clean
 
 fclean: clean
 	@rm -f $(EX) $(BONUS)
-	@make -C libft/ fclean
+	@make -C sources/libft/ fclean
 
 re: fclean all
 
