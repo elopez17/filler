@@ -6,7 +6,7 @@
 /*   By: eLopez <elopez@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 14:17:13 by eLopez            #+#    #+#             */
-/*   Updated: 2018/01/31 15:29:49 by elopez           ###   ########.fr       */
+/*   Updated: 2018/01/31 16:40:53 by elopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,34 +63,18 @@ static int	mouse_hook(int key, int x, int y, t_vis **v)
 	{
 		process(*v);
 		process(*v);
-		process(*v);
-		process(*v);
 	}
 	else if (x || y)
 		;
 	return (0);
 }
 
-static int	motion_hook(int x, int y, t_vis **v)
-{
-	if (x || y)
-	{
-		process(*v);
-	}
-	return (0);
-}
-
-int main(int argc, char **argv)
+int main()
 {
 	t_vis	*v;
 
 	v = (t_vis*)ft_memalloc(sizeof(t_vis));
-	if (argc != 2 || (v->fd = open(argv[1], O_RDONLY)) == -1)
-	{
-		ft_printf("usage: ./visualizer <output file>\n");
-		ft_memdel((void**)&v);
-		exit(0);
-	}
+	v->fd = 0;
 	v_init(v);
 	v->zoom = 1;
 	while (v->brd.x * (v->zoom + 1) <= 800 && v->brd.y * (v->zoom + 1) <= 700)
@@ -98,7 +82,6 @@ int main(int argc, char **argv)
 	putgrid(v);
 	mlx_hook(v->win, 2, 0, &key_hook, &v);
 	mlx_hook(v->win, 4, 0, &mouse_hook, &v);
-	mlx_hook(v->win, 6, 0, &motion_hook, &v);
 	mlx_loop(v->mlx);
 	return (0);
 }
