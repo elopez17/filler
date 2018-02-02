@@ -31,11 +31,7 @@ BONUS	= visualizer
 all: $(LIB) $(EX) $(BONUS)
 
 visual: $(BONUS) $(EX)
-	@-touch output
-	@-chmod 666 output
-	-./filler_vm -p1 $(EX) -p2 players/carli.filler -f maps/map02 > output
-	-./$(BONUS) output
-	@rm -f output
+	-./filler_vm -p2 $(EX) -p1 players/grati.filler -f maps/map00 | ./visualizer
 
 $(EX): $(OBJ)
 	@$(CC) $(CFLAGS) -I $(INC) -o $(EX) $(OBJ) -L./sources/ -lft
