@@ -6,7 +6,7 @@
 /*   By: eLopez <elopez@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 14:17:13 by eLopez            #+#    #+#             */
-/*   Updated: 2018/01/31 16:40:53 by elopez           ###   ########.fr       */
+/*   Updated: 2018/02/02 13:54:38 by elopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	mouse_hook(int key, int x, int y, t_vis **v)
 	return (0);
 }
 
-int main()
+int			main(void)
 {
 	t_vis	*v;
 

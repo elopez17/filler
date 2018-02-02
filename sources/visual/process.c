@@ -6,7 +6,7 @@
 /*   By: eLopez <elopez@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/10 22:45:14 by eLopez            #+#    #+#             */
-/*   Updated: 2018/01/31 15:30:19 by elopez           ###   ########.fr       */
+/*   Updated: 2018/02/02 13:54:58 by elopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	getfinal(t_vis *v, char **line)
 	return (0);
 }
 
-int		process(t_vis *v)
+int			process(t_vis *v)
 {
 	char	*line;
 	int		x;

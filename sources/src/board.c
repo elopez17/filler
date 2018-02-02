@@ -6,7 +6,7 @@
 /*   By: eLopez <elopez@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 18:50:35 by eLopez            #+#    #+#             */
-/*   Updated: 2018/01/30 20:33:32 by eLopez           ###   ########.fr       */
+/*   Updated: 2018/02/02 13:52:22 by elopez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int			get_board(t_filler *f)
 	char	*line;
 	int		i;
 
-	if (get_next_line(0, &line) == 0)//	Plateau
-		get_next_line(0, &line);// Plateau
+	if (get_next_line(0, &line) == 0)
+		get_next_line(0, &line);
 	if (f->brd.x == 0 && f->brd.y == 0)
 		board_xy(f, line);
 	ft_strdel(&line);
